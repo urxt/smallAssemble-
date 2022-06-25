@@ -3,12 +3,12 @@
 import sys
 
 def main():
-    token = list()
-    with open("test.asm", 'r') as f:
-        for line in f.read():
-            token = line.split()
-    f.close()
-    
+    check_file("test.asm")
+
+def check_file(filename): 
+    file = open(filename)
+    for lines in file: 
+        print(lines.strip())
 
 if __name__ == "__main__":
     main()
