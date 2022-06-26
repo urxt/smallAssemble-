@@ -3,8 +3,9 @@
 import sys
 
 def main():
-    check_file("test.asm")
+    parse_labels()
 
+""" 
 def check_file(filename): 
     file = open(filename)
     for lines in file: 
@@ -15,6 +16,7 @@ def check_file(filename):
             print("ADD instruction")
         elif(tokens[0]) == "sd":
             print("STORE instruction")
+""" 
 
 def parse_labels():
     linenum = 0
@@ -28,6 +30,8 @@ def parse_labels():
                 labels[line[1:]] = linenum*4 
             else:
                 linenum += 1
+    f.close() 
+
 
 if __name__ == "__main__":
     main()
