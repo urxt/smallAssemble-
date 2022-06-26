@@ -34,8 +34,12 @@ def parse_labels():
     f.close() 
 
 def write_to_binary(text): 
-    with open("test.bin", 'w') as f:
+    with open("test.bin", 'a+b') as f:
         f.write(bytearray(text))
+
+def zerobin():
+    with open("test.bin", 'w+b') as f:
+        f.close() 
 
 def check_tokens():
     with open("test.asm") as f:
