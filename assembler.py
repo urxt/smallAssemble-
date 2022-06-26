@@ -33,6 +33,9 @@ def parse_labels():
                 linenum += 1
     f.close() 
 
+def write_to_binary(text): 
+    with open("test.bin", 'w') as f:
+        f.write(bytearray(text))
 
 def check_tokens():
     with open("test.asm") as f:
@@ -56,9 +59,7 @@ def check_tokens():
                     if a0[0] == '$':   # Address
                         addr = int(a0[1:], 0) 
                         b = [0x02, r, addr >> 8, addr & 0xFF] 
-
-
-
+                        write_to_binary(b)
 
 
 if __name__ == "__main__":
