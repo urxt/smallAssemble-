@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import re 
 
 def main():
     parse_labels()
@@ -41,6 +42,21 @@ def check_tokens():
 
             if line[0] == '#':      # Ignore comments
                 continue        
+
+            line = line.strip().replace('\r', '') 
+            token = re.split(r'[, ]', line)
+
+            if '' in token: 
+                token.remove('') 
+
+            if token[0] == "ld":
+                r0 = int(token[1]) 
+                if r0 >= 0 and r <= 7: 
+                    a0 = token[2] 
+                    if a0[0] == '$':   # Address
+                        addr = int(a0[1:], 0) 
+                        b = [0x02, r, addr >> 8, addr & 0xFF] 
+
 
 
 
