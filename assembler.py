@@ -23,7 +23,7 @@ def parse_labels():
     with open("test.asm") as f:
         for line in f:
             line = line.strip().replace('\r', '') 
-            # Comments
+            # Ignore Comments
             if line[0] == '#':
                 continue 
             if line[0] == '.':
@@ -31,6 +31,18 @@ def parse_labels():
             else:
                 linenum += 1
     f.close() 
+
+
+def check_tokens():
+    with open("test.asm") as f:
+        for line in f:
+            if line[0] == '.':      # Ignore labels 
+                continue
+
+            if line[0] == '#':      # Ignore comments
+                continue        
+
+
 
 
 if __name__ == "__main__":
