@@ -74,10 +74,30 @@ def check_tokens():
                         v = int(a1, 0)          # Value 
                         b = [0x00, r, v >> 8, v & 0xFF] 
                         write_to_binary("test.bin", b) 
-            else:
-                
-                print("Invalid reg name")
-                sys.exit()
+
+                else:
+                    print("Invalid reg name")
+                    sys.exit()
+
+            elif token[0] == "sd":
+                r = int(token[1]) 
+                if r >= 0 and r <= 7: 
+                    a0 = token[2] 
+                    if a0[0] == '$':            # Address
+                        addr = int(a0[1:], 0) 
+                        b = [0x10, r, addr >> 8, addr & 0xFF] 
+                        write_to_binary(b)
+
+                    elif a0[0] == 'R':          # Register
+                        r1 = int(a0[1:], 0) 
+                        b = [0x13, r, 0, r1]
+                        write_to_binary(b) 
+
+                    else:
+                        print("Invalid Mode") 
+                        print(line)
+                        sys.exit()
+
 
 
 if __name__ == "__main__":
