@@ -1,1 +1,1 @@
-ld r1, 0x00
+ld r1, 0xFFFF

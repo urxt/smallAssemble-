@@ -4,7 +4,7 @@ import sys
 import re 
 
 def main():
-    parse_labels()
+    check_tokens()
 
 def parse_labels():
     linenum = 0
@@ -23,6 +23,7 @@ def parse_labels():
 def write_to_binary(text): 
     with open("test.bin", 'a+b') as f:
         f.write(bytearray(text))
+        f.close()
 
 def zero_to_binary():
     with open("test.bin", 'w+b') as f:
@@ -44,7 +45,7 @@ def check_tokens():
                 token.remove('') 
 
             if token[0] == "ld":
-                r = int(token[1]) 
+                r = int(token[1][1]) 
                 if r >= 0 and r <= 7: 
                     a0 = token[2] 
                     if a0[0] == '$':            # Address
@@ -58,7 +59,7 @@ def check_tokens():
                         write_to_binary(b) 
 
                     else:
-                        v = int(a1, 0)          # Value 
+                        v = int(a0, 0)          # Value 
                         b = [0x00, r, v >> 8, v & 0xFF] 
                         write_to_binary("test.bin", b) 
 
@@ -68,7 +69,7 @@ def check_tokens():
                     sys.exit()
 
             elif token[0] == "sd":
-                r = int(token[1]) 
+                r = int(token[1][1]) 
                 if r >= 0 and r <= 7: 
                     a0 = token[2] 
                     if a0[0] == '$':            # Address
