@@ -57,13 +57,27 @@ def check_tokens():
                 token.remove('') 
 
             if token[0] == "ld":
-                r0 = int(token[1]) 
-                if r0 >= 0 and r <= 7: 
+                r = int(token[1]) 
+                if r >= 0 and r <= 7: 
                     a0 = token[2] 
-                    if a0[0] == '$':   # Address
+                    if a0[0] == '$':            # Address
                         addr = int(a0[1:], 0) 
                         b = [0x02, r, addr >> 8, addr & 0xFF] 
                         write_to_binary(b)
+
+                    elif a0[0] == 'R':          # Register
+                        r1 = int(a0[1:], 0) 
+                        b = [0x01, r, 0, r1]
+                        write_to_binary(b) 
+
+                    else:
+                        v = int(a1, 0)          # Value 
+                        b = [0x00, r, v >> 8, v & 0xFF] 
+                        write_to_binary("test.bin", b) 
+            else:
+                
+                print("Invalid reg name")
+                sys.exit()
 
 
 if __name__ == "__main__":
