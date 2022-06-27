@@ -64,6 +64,7 @@ def check_tokens():
 
                 else:
                     print("Invalid reg name")
+                    print(token[1])
                     sys.exit()
 
             elif token[0] == "sd":
@@ -85,6 +86,10 @@ def check_tokens():
                         print(line)
                         sys.exit()
 
+                else:
+                    print("Invalid reg name") 
+                    print(token[1])
+                    sys.exit()
 
 
 if __name__ == "__main__":
