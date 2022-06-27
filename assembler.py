@@ -6,19 +6,6 @@ import re
 def main():
     parse_labels()
 
-""" 
-def check_file(filename): 
-    file = open(filename)
-    for lines in file: 
-        tokens = lines.split(' ')
-        if(tokens[0]) == "ld":
-            print("LOAD instruction")
-        elif(tokens[0]) == "add":
-            print("ADD instruction")
-        elif(tokens[0]) == "sd":
-            print("STORE instruction")
-""" 
-
 def parse_labels():
     linenum = 0
     with open("test.asm") as f:
