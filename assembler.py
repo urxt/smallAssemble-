@@ -61,7 +61,7 @@ def check_tokens():
                     else:
                         v = int(a0, 0)          # Value 
                         b = [0x00, r, v >> 8, v & 0xFF] 
-                        write_to_binary("test.bin", b) 
+                        write_to_binary(b) 
 
                 else:
                     print("Invalid reg name")
