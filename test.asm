@@ -1,1 +1,2 @@
 ld r1, 0xFFFF
+ld r2, 0xFFFF
